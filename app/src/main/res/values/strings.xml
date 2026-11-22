@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Unique Chicken</string>
+    <string name="shop_title">UNIQUE CHICKEN</string>
+    <string name="shop_subtitle">Daily Business Account</string>
+    <string name="nav_daily_account">Daily Account</string>
+    <string name="nav_history">History</string>
+    <string name="sign_in_with_google">Sign in with Google</string>
+    <string name="download_share_pdf">DOWNLOAD / SHARE DAILY PDF</string>
+    <string name="add_customer">Add Customer</string>
+</resources>

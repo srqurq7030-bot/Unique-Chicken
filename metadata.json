@@ -1,0 +1,8 @@
+{
+  "name": "Unique Chicken",
+  "description": "Simple daily broiler chicken shop accounting app for purchases, customer sales, closing stock, expenses, profit calculation, and PDF reporting.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

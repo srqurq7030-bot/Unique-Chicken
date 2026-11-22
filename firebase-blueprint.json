@@ -1,0 +1,174 @@
+{
+  "entities": {
+    "DailyRecord": {
+      "title": "DailyRecord",
+      "description": "Daily business ledger for Unique Chicken including purchases, closing stock, expenses, and denormalized sales summary.",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "Owner Firebase Auth UID."
+        },
+        "date": {
+          "type": "string",
+          "description": "Record date in yyyy-MM-dd format."
+        },
+        "purchasePcs": {
+          "type": "integer",
+          "description": "Total broiler purchase pieces."
+        },
+        "purchaseWeightKg": {
+          "type": "number",
+          "description": "Total broiler purchase weight in KG."
+        },
+        "purchaseRatePerKg": {
+          "type": "number",
+          "description": "Purchase rate per KG in INR."
+        },
+        "actualClosingPcs": {
+          "type": "integer",
+          "description": "Actual closing live birds remaining in PCS."
+        },
+        "actualClosingWeightKg": {
+          "type": "number",
+          "description": "Actual closing stock weight in KG."
+        },
+        "remainingStockValue": {
+          "type": "number",
+          "description": "Manually entered monetary value of remaining closing stock in INR."
+        },
+        "shopExpenses": {
+          "type": "number",
+          "description": "Daily shop expenses in INR."
+        },
+        "workerPayment": {
+          "type": "number",
+          "description": "Daily worker payment in INR."
+        },
+        "otherExpenses": {
+          "type": "number",
+          "description": "Other daily expenses in INR."
+        },
+        "customerCount": {
+          "type": "integer",
+          "description": "Number of customer sales entries for the date."
+        },
+        "totalSoldPcs": {
+          "type": "integer",
+          "description": "Total sold pieces across all customers."
+        },
+        "totalSoldWeightKg": {
+          "type": "number",
+          "description": "Total sold weight in KG across all customers."
+        },
+        "totalSalesAmount": {
+          "type": "number",
+          "description": "Total sales value in INR across all customers."
+        },
+        "totalDepositAmount": {
+          "type": "number",
+          "description": "Total deposit received in INR across all customers."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server creation timestamp via FieldValue.serverTimestamp()."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server update timestamp via FieldValue.serverTimestamp()."
+        }
+      },
+      "required": [
+        "userId",
+        "date",
+        "purchasePcs",
+        "purchaseWeightKg",
+        "purchaseRatePerKg",
+        "actualClosingPcs",
+        "actualClosingWeightKg",
+        "shopExpenses",
+        "workerPayment",
+        "otherExpenses",
+        "customerCount",
+        "totalSoldPcs",
+        "totalSoldWeightKg",
+        "totalSalesAmount",
+        "totalDepositAmount",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "CustomerSale": {
+      "title": "CustomerSale",
+      "description": "Individual customer sale row for a specific date.",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "Owner Firebase Auth UID."
+        },
+        "recordDate": {
+          "type": "string",
+          "description": "Parent record date in yyyy-MM-dd format."
+        },
+        "customerName": {
+          "type": "string",
+          "description": "Customer or shop name."
+        },
+        "pcs": {
+          "type": "integer",
+          "description": "Pieces sold to this customer."
+        },
+        "weightKg": {
+          "type": "number",
+          "description": "Weight sold in KG."
+        },
+        "ratePerKg": {
+          "type": "number",
+          "description": "Selling rate per KG in INR."
+        },
+        "depositAmount": {
+          "type": "number",
+          "description": "Amount paid/deposited by customer in INR."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server creation timestamp via FieldValue.serverTimestamp()."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server update timestamp via FieldValue.serverTimestamp()."
+        }
+      },
+      "required": [
+        "userId",
+        "recordDate",
+        "customerName",
+        "pcs",
+        "weightKg",
+        "ratePerKg",
+        "depositAmount",
+        "createdAt",
+        "updatedAt"
+      ]
+    }
+  },
+  "firestore": {
+    "/users/{userId}/dailyRecords/{dateId}": {
+      "schema": {
+        "$ref": "#/entities/DailyRecord"
+      },
+      "description": "User-scoped daily business account records keyed by yyyy-MM-dd."
+    },
+    "/users/{userId}/dailyRecords/{dateId}/customerSales/{saleId}": {
+      "schema": {
+        "$ref": "#/entities/CustomerSale"
+      },
+      "description": "Unlimited customer sales rows for a specific date."
+    }
+  }
+}
